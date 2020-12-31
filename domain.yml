@@ -1,0 +1,99 @@
+actions:
+- action_search_restaurants
+- action_send_email
+- action_validate_cuisine
+- action_validate_location
+- utter_ask_budget
+- utter_ask_cuisine
+- utter_ask_email_id
+- utter_ask_location
+- utter_default
+- utter_goodbye
+- utter_greet
+- utter_happy
+- utter_iamabot
+entities:
+- budgetmax
+- budgetmin
+- cuisine
+- email_id
+- goodbye
+- greet
+- location
+intents:
+- restaurant_search
+- goodbye
+- greet
+- affirm
+- bot_challenge
+- mood_great
+- inform
+responses:
+  utter_ask_budget:
+  - buttons:
+    - payload: /restaurant_search{"budgetmin":0,"budgetmax":300}
+      title: Less than 300
+    - payload: /restaurant_search{"budgetmin":300,"budgetmax":700}
+      title: Rs 300 to Rs 700
+    - payload: /restaurant_search{"budgetmin":700,"budgetmax":1000}
+      title: More than 700
+    text: What price range are you looking for?
+  utter_ask_cuisine:
+  - buttons:
+    - payload: Chinese
+      title: Chinese
+    - payload: Italian
+      title: Italian
+    - payload: South Indian
+      title: South Indian
+    - payload: North Indian
+      title: North Indian
+    - payload: American
+      title: American
+    - payload: Mexican
+      title: Mexican
+    text: what kind of cuisine would you like?
+  utter_ask_email_id:
+  - text: If you want to get these restaurants details on you email. Please enter
+      you email_id
+  utter_ask_location:
+  - text: In what location?
+  utter_default:
+  - text: Sorry, didn't get you.
+  utter_goodbye:
+  - text: Bye
+  utter_greet:
+  - text: hey there! How may i help you
+  - text: Hi, How can I help you!
+  - text: Hey, How is it going. How May I help you Today
+  utter_happy:
+  - text: Great, carry on!
+  utter_iamabot:
+  - text: I am a bot, powered by Rasa.
+session_config:
+  carry_over_slots_to_new_session: true
+  session_expiration_time: 60
+slots:
+  budgetmax:
+    initial_value: 1000.0
+    max_value: 1000.0
+    min_value: 0.0
+    type: float
+  budgetmin:
+    initial_value: 1.0
+    max_value: 700.0
+    min_value: 0.0
+    type: float
+  cuisine:
+    type: text
+  cuisine_ok:
+    initial_value: true
+    type: bool
+  email_id:
+    type: text
+  location:
+    type: text
+  location_ok:
+    type: bool
+  restaurant_exist:
+    type: bool
